@@ -1,0 +1,75 @@
+@import "src/theme/theme-variables";
+@import "src/theme/colors";
+
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.inline-loader {
+  display: inline-block;
+}
+
+.card {
+  margin-top: 5rem !important;
+}
+
+.login-container,
+.mat-form-field {
+  width: 100%;
+}
+.mat-card {
+  box-shadow: 0px 32px 49px -21px rgba(0, 0, 0, 0.31);
+  position: relative;
+}
+.mat-card-header {
+  justify-content: center;
+}
+.mat-card-content {
+  padding: 10px 40px 0 40px;
+  margin-bottom: 10px;
+}
+.mat-card-footer {
+  padding-bottom: 20px;
+  span {
+    font-size: 12px;
+  }
+}
+.mat-checkbox {
+  margin-bottom: 0.5rem;
+}
+.mat-raised-button {
+  padding: $button-padding;
+  span {
+    text-transform: uppercase;
+    color: $cms-color-white;
+    font-size: 18px;
+  }
+}
+.remember {
+  font-size: 12px !important;
+}
+.login-error {
+  color: mat-color($app-warn);
+}
+.login-box {
+  padding: 0;
+  border-radius: 7px;
+  .login-box__header {
+    background-color: $cms-color-main;
+    border-radius: 7px 7px 0 0;
+    padding: 22px 0;
+    color: $cms-color-white;
+    span {
+      font-size: 18px;
+    }
+    .login-box__header--title {
+      text-transform: uppercase;
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
+.icon-color {
+  color: $cms-color-grey;
+}

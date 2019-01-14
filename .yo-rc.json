@@ -1,0 +1,20 @@
+{
+  "generator-ngx-rocket": {
+    "version": "5.3.0",
+    "props": {
+      "location": "path",
+      "appName": "CMS-INTRANETTOOLS",
+      "target": ["web"],
+      "pwa": true,
+      "ui": "material",
+      "layout": "simple",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "prettier": true,
+      "projectName": "cms-intranettools",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}

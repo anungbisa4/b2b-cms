@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="col-md-5 mt-3 mx-auto card">
+    <mat-card class="login-box md-elevation-z9">
+      <mat-card-header class="login-box__header">
+        <mat-card-title class="login-box__header--title"><span>SIGN TO YOUR ACCOUNT</span></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+          <div class="login-error" [hidden]="!error || isLoading" translate>Username or password incorrect.</div>
+          <br />
+          <div fxLayout="column">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="username"
+                autocomplete="username"
+                [placeholder]="'Username' | translate"
+              />
+              <mat-icon matSuffix class="icon-color">account_circle</mat-icon>
+              <mat-error *ngIf="loginForm.controls.username.valid || loginForm.controls.username.untouched">
+                <span translate>Username is required</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                type="password"
+                matInput
+                formControlName="password"
+                autocomplete="current-password"
+                [placeholder]="'Password' | translate"
+                required
+              />
+              <mat-icon matSuffix class="icon-color">https</mat-icon>
+              <mat-error *ngIf="loginForm.controls.password.valid || loginForm.controls.password.untouched">
+                <span translate>Password is required</span>
+              </mat-error>
+            </mat-form-field>
+            <section>
+              <mat-checkbox
+                color="primary"
+                class="remember"
+                fxLayoutAlign="end end"
+                labelPosition="before"
+                formControlName="remember"
+                >Remember me</mat-checkbox
+              >
+            </section>
+            <button
+              mat-raised-button
+              color="primary"
+              class="z-depth-4"
+              type="submit"
+              [disabled]="loginForm.invalid || isLoading"
+            >
+              <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+              <span translate>Login</span>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-footer fxLayoutAlign="center center">
+        <span><a routerLink="/home" routerLinkActive="active">Forgot Password?</a></span>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
