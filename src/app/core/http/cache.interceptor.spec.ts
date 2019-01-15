@@ -1,6 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HTTP_INTERCEPTORS, HttpClient, HttpResponse } from '@angular/common/http';
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpResponse
+} from '@angular/common/http';
 
 import { CacheInterceptor } from './cache.interceptor';
 import { HttpCacheService } from './http-cache.service';
@@ -13,7 +20,9 @@ describe('CacheInterceptor', () => {
   let httpMock: HttpTestingController;
 
   function createInterceptor(_httpCacheService: HttpCacheService) {
-    cacheInterceptor = new CacheInterceptor(_httpCacheService).configure(interceptorOptions);
+    cacheInterceptor = new CacheInterceptor(_httpCacheService).configure(
+      interceptorOptions
+    );
     return cacheInterceptor;
   }
 
@@ -44,7 +53,11 @@ describe('CacheInterceptor', () => {
 
     beforeEach(inject(
       [HttpClient, HttpTestingController, HttpCacheService],
-      (_http: HttpClient, _httpMock: HttpTestingController, _httpCacheService: HttpCacheService) => {
+      (
+        _http: HttpClient,
+        _httpMock: HttpTestingController,
+        _httpCacheService: HttpCacheService
+      ) => {
         http = _http;
         httpMock = _httpMock;
         httpCacheService = _httpCacheService;
@@ -65,7 +78,10 @@ describe('CacheInterceptor', () => {
 
     it('should respond from the cache', () => {
       // Arrange
-      httpCacheService.setCacheData('/toto', new HttpResponse({ body: 'cachedData' }));
+      httpCacheService.setCacheData(
+        '/toto',
+        new HttpResponse({ body: 'cachedData' })
+      );
 
       // Act
       http.get('/toto').subscribe(response => {
@@ -100,7 +116,11 @@ describe('CacheInterceptor', () => {
 
     beforeEach(inject(
       [HttpClient, HttpTestingController, HttpCacheService],
-      (_http: HttpClient, _httpMock: HttpTestingController, _httpCacheService: HttpCacheService) => {
+      (
+        _http: HttpClient,
+        _httpMock: HttpTestingController,
+        _httpCacheService: HttpCacheService
+      ) => {
         http = _http;
         httpMock = _httpMock;
         httpCacheService = _httpCacheService;
@@ -114,7 +134,10 @@ describe('CacheInterceptor', () => {
 
     it('should force cache update', () => {
       // Arrange
-      httpCacheService.setCacheData('/toto', new HttpResponse({ body: 'oldCachedData' }));
+      httpCacheService.setCacheData(
+        '/toto',
+        new HttpResponse({ body: 'oldCachedData' })
+      );
       cacheInterceptor.configure({ update: true });
 
       // Act

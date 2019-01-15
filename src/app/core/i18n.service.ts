@@ -53,13 +53,19 @@ export class I18nService {
    * @param language The IETF language code to set.
    */
   set language(language: string) {
-    language = language || localStorage.getItem(languageKey) || this.translateService.getBrowserCultureLang();
+    language =
+      language ||
+      localStorage.getItem(languageKey) ||
+      this.translateService.getBrowserCultureLang();
     let isSupportedLanguage = includes(this.supportedLanguages, language);
 
     // If no exact match is found, search without the region
     if (language && !isSupportedLanguage) {
       language = language.split('-')[0];
-      language = this.supportedLanguages.find(supportedLanguage => supportedLanguage.startsWith(language)) || '';
+      language =
+        this.supportedLanguages.find(supportedLanguage =>
+          supportedLanguage.startsWith(language)
+        ) || '';
       isSupportedLanguage = Boolean(language);
     }
 

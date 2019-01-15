@@ -17,7 +17,12 @@ export class ShellComponent implements OnInit {
     // Automatically close side menu on screens > sm breakpoint
     this.media
       .asObservable()
-      .pipe(filter((change: MediaChange) => change.mqAlias !== 'xs' && change.mqAlias !== 'sm'))
+      .pipe(
+        filter(
+          (change: MediaChange) =>
+            change.mqAlias !== 'xs' && change.mqAlias !== 'sm'
+        )
+      )
       .subscribe(() => this.sidenav.close());
   }
 }

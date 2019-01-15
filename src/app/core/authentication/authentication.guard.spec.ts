@@ -15,7 +15,10 @@ describe('AuthenticationGuard', () => {
     mockRouter = {
       navigate: jasmine.createSpy('navigate')
     };
-    mockSnapshot = jasmine.createSpyObj<RouterStateSnapshot>('RouterStateSnapshot', ['toString']);
+    mockSnapshot = jasmine.createSpyObj<RouterStateSnapshot>(
+      'RouterStateSnapshot',
+      ['toString']
+    );
 
     TestBed.configureTestingModule({
       providers: [
@@ -28,7 +31,10 @@ describe('AuthenticationGuard', () => {
 
   beforeEach(inject(
     [AuthenticationGuard, AuthenticationService],
-    (_authenticationGuard: AuthenticationGuard, _authenticationService: MockAuthenticationService) => {
+    (
+      _authenticationGuard: AuthenticationGuard,
+      _authenticationService: MockAuthenticationService
+    ) => {
       authenticationGuard = _authenticationGuard;
       authenticationService = _authenticationService;
     }
