@@ -9,21 +9,22 @@
 # RUN $(npm bin)/ng build --prod --build-optimizer
 
 
-# FROM node:9-slim
-# ENV PORT 8080
-# EXPOSE 8080
-# WORKDIR /usr/src/app
-# COPY . .
-# CMD ["npm", "start"]
-
-
 FROM node:9-slim
 ENV PORT 8080
 EXPOSE 8080
 WORKDIR /usr/src/app
 COPY . .
-RUN npm cache clean --force
-RUN npm install
-RUN npm run-script build --prod
+RUN npm run build --prod
 CMD ["npm", "start"]
+
+
+# FROM node:9-slim
+# ENV PORT 8080
+# EXPOSE 8080
+# WORKDIR /usr/src/app
+# COPY . .
+# RUN npm cache clean --force
+# RUN npm install
+# RUN npm run-script build --prod
+# CMD ["npm", "start"]
 
