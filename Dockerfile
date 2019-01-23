@@ -23,6 +23,6 @@ EXPOSE 8080
 WORKDIR /usr/src/app
 COPY . .
 RUN npm install
-ARG env=prod
-RUN npm run build -- --prod --environment $env
+RUN npm run build --prod
+CMD ["npm", "start"]
 
