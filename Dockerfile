@@ -9,10 +9,20 @@
 # RUN $(npm bin)/ng build --prod --build-optimizer
 
 
+# FROM node:9-slim
+# ENV PORT 8080
+# EXPOSE 8080
+# WORKDIR /usr/src/app
+# COPY . .
+# CMD ["npm", "start"]
+
+
 FROM node:9-slim
 ENV PORT 8080
 EXPOSE 8080
 WORKDIR /usr/src/app
 COPY . .
-CMD ["npm", "start"]
+RUN npm install
+ARG env=prod
+RUN npm run build -- --prod --environment $env
 
