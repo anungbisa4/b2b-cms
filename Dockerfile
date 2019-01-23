@@ -23,7 +23,8 @@ EXPOSE 8080
 WORKDIR /usr/src/app
 COPY . .
 RUN npm cache clean --force
-RUN npm install
+# RUN npm install
 RUN npm run-script build --prod
-CMD ["npm", "start"]
+RUN pwd
+# CMD ["npm", "start"]
 
