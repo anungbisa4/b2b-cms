@@ -61,9 +61,9 @@
 # Extending image
 FROM node:9-slim
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get -y install autoconf automake libtool nasm make pkg-config git apt-utils
+# RUN apt-get update
+# RUN apt-get upgrade -y
+# RUN apt-get -y install autoconf automake libtool nasm make pkg-config git apt-utils
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -77,7 +77,7 @@ RUN node -v
 COPY package.json /usr/src/app/
 COPY package-lock.json /usr/src/app/
 
-RUN npm install
+# RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
