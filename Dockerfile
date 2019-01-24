@@ -90,7 +90,7 @@ ENV NODE_ENV production
 ENV PORT 8080
 ENV PUBLIC_PATH "/"
 
-RUN npm run start:build
+RUN npm run start
 
 # Main command
 CMD [ "npm", "run", "start:server" ]
