@@ -24,7 +24,8 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm cache clean --force
 RUN npm install
-RUN cat /var/log/jenkins
+RUN ls /var
+RUN ls /var/log
 # RUN npm run-script build --prod
 CMD ["npm", "start"]
 
