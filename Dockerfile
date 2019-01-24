@@ -46,14 +46,51 @@
 # CMD ["npm", "start"]
 
 
-FROM node:9-slim AS build-stage
-WORKDIR /usr/src/app
-COPY package*.json /usr/src/app/
-RUN npm install
-COPY . /usr/src/app/
-ARG config = production
-RUN npm run build -- --output-path=./dist/out --configuration $config
+# FROM node:9-slim AS build-stage
+# WORKDIR /usr/src/app
+# COPY package*.json /usr/src/app/
+# RUN npm install
+# COPY . /usr/src/app/
+# ARG config = production
+# RUN npm run build -- --output-path=./dist/out --configuration $config
 
-FROM nginx:1.15
-COPY --from=build-stage /usr/src/app/dist/out/ /usr/share/nginx/html
-COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+# FROM nginx:1.15
+# COPY --from=build-stage /usr/src/app/dist/out/ /usr/share/nginx/html
+# COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+
+# Extending image
+FROM node:9-slim
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get -y install autoconf automake libtool nasm make pkg-config git apt-utils
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Versions
+RUN npm -v
+RUN node -v
+
+# Install app dependencies
+COPY package.json /usr/src/app/
+COPY package-lock.json /usr/src/app/
+
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app
+
+# Port to listener
+EXPOSE 8080
+
+# Environment variables
+ENV NODE_ENV production
+ENV PORT 8080
+ENV PUBLIC_PATH "/"
+
+RUN npm run start:build
+
+# Main command
+CMD [ "npm", "run", "start:server" ]
