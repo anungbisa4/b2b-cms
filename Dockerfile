@@ -39,11 +39,9 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN true \
  && set -xe \
- && apk add --no-cache python build-base \
  && yarn install \
- && apk del python build-base \
  && true
 ENV PORT 8080
-EXPOSE 18080/TCP
+EXPOSE 8080/TCP
 CMD ["npm", "start"]
 
