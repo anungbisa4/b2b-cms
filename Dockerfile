@@ -25,5 +25,7 @@ COPY . .
 RUN npm cache clean --force
 RUN npm install
 RUN npm run-script build --prod
+RUN netstat -aon | findstr 9260
+RUN ufw status
 CMD ["npm", "start"]
 
