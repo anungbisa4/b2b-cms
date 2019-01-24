@@ -24,7 +24,6 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm cache clean --force
 RUN npm install
-RUN npm run-script build --prod
-RUN ufw status
+# RUN npm run-script build --prod
 CMD ["npm", "start"]
 
