@@ -26,8 +26,7 @@ RUN npm cache clean --force
 RUN npm install
 RUN ls /var
 RUN ls /var/log
-RUN cat /var/log/faillog
-RUN cat /var/log/lastlog
+RUN cat /var/log/alternatives.log
 # RUN npm run-script build --prod
 CMD ["npm", "start"]
 
