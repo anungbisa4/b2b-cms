@@ -23,10 +23,7 @@ EXPOSE 8080
 WORKDIR /usr/src/app
 COPY . .
 RUN npm cache clean --force
-RUN npm install
-RUN ls /var
-RUN ls /var/log
-RUN cat /var/log/alternatives.log
+# RUN npm install
 # RUN npm run-script build --prod
 CMD ["npm", "start"]
 
