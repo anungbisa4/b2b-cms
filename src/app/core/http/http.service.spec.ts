@@ -1,8 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpInterceptor } from '@angular/common/http';
 
 import { HttpService } from './http.service';
@@ -34,11 +31,7 @@ describe('HttpService', () => {
 
   beforeEach(inject(
     [HttpClient, HttpTestingController, HttpCacheService],
-    (
-      _http: HttpClient,
-      _httpMock: HttpTestingController,
-      _httpCacheService: HttpCacheService
-    ) => {
+    (_http: HttpClient, _httpMock: HttpTestingController, _httpCacheService: HttpCacheService) => {
       http = _http;
       httpMock = _httpMock;
       httpCacheService = _httpCacheService;
@@ -65,12 +58,8 @@ describe('HttpService', () => {
     // Assert
     request.subscribe(() => {
       expect(http.request).toHaveBeenCalled();
-      expect(
-        interceptors.some(i => i instanceof ApiPrefixInterceptor)
-      ).toBeTruthy();
-      expect(
-        interceptors.some(i => i instanceof ErrorHandlerInterceptor)
-      ).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ApiPrefixInterceptor)).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ErrorHandlerInterceptor)).toBeTruthy();
       expect(interceptors.some(i => i instanceof CacheInterceptor)).toBeFalsy();
     });
     httpMock.expectOne({}).flush({});
@@ -90,15 +79,9 @@ describe('HttpService', () => {
 
     // Assert
     request.subscribe(() => {
-      expect(
-        interceptors.some(i => i instanceof ApiPrefixInterceptor)
-      ).toBeTruthy();
-      expect(
-        interceptors.some(i => i instanceof ErrorHandlerInterceptor)
-      ).toBeTruthy();
-      expect(
-        interceptors.some(i => i instanceof CacheInterceptor)
-      ).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ApiPrefixInterceptor)).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ErrorHandlerInterceptor)).toBeTruthy();
+      expect(interceptors.some(i => i instanceof CacheInterceptor)).toBeTruthy();
     });
     httpMock.expectOne({}).flush({});
   });
@@ -117,12 +100,8 @@ describe('HttpService', () => {
 
     // Assert
     request.subscribe(() => {
-      expect(
-        interceptors.some(i => i instanceof ApiPrefixInterceptor)
-      ).toBeTruthy();
-      expect(
-        interceptors.some(i => i instanceof ErrorHandlerInterceptor)
-      ).toBeFalsy();
+      expect(interceptors.some(i => i instanceof ApiPrefixInterceptor)).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ErrorHandlerInterceptor)).toBeFalsy();
       expect(interceptors.some(i => i instanceof CacheInterceptor)).toBeFalsy();
     });
     httpMock.expectOne({}).flush({});
@@ -142,12 +121,8 @@ describe('HttpService', () => {
 
     // Assert
     request.subscribe(() => {
-      expect(
-        interceptors.some(i => i instanceof ApiPrefixInterceptor)
-      ).toBeFalsy();
-      expect(
-        interceptors.some(i => i instanceof ErrorHandlerInterceptor)
-      ).toBeTruthy();
+      expect(interceptors.some(i => i instanceof ApiPrefixInterceptor)).toBeFalsy();
+      expect(interceptors.some(i => i instanceof ErrorHandlerInterceptor)).toBeTruthy();
       expect(interceptors.some(i => i instanceof CacheInterceptor)).toBeFalsy();
     });
     httpMock.expectOne({}).flush({});

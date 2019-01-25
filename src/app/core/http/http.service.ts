@@ -1,17 +1,5 @@
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  Injector,
-  Optional
-} from '@angular/core';
-import {
-  HttpClient,
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest
-} from '@angular/common/http';
+import { Inject, Injectable, InjectionToken, Injector, Optional } from '@angular/core';
+import { HttpClient, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
@@ -47,10 +35,7 @@ declare module '@angular/common/http/src/client' {
 
 // From @angular/common/http/src/interceptor: allows to chain interceptors
 class HttpInterceptorHandler implements HttpHandler {
-  constructor(
-    private next: HttpHandler,
-    private interceptor: HttpInterceptor
-  ) {}
+  constructor(private next: HttpHandler, private interceptor: HttpInterceptor) {}
 
   handle(request: HttpRequest<any>): Observable<HttpEvent<any>> {
     return this.interceptor.intercept(request, this.next);
@@ -65,9 +50,7 @@ class HttpInterceptorHandler implements HttpHandler {
  * For static interceptors that should always be enabled (like ApiPrefixInterceptor), use the standard
  * HTTP_INTERCEPTORS token.
  */
-export const HTTP_DYNAMIC_INTERCEPTORS = new InjectionToken<HttpInterceptor>(
-  'HTTP_DYNAMIC_INTERCEPTORS'
-);
+export const HTTP_DYNAMIC_INTERCEPTORS = new InjectionToken<HttpInterceptor>('HTTP_DYNAMIC_INTERCEPTORS');
 
 /**
  * Extends HttpClient with per request configuration using dynamic interceptors.
@@ -85,17 +68,12 @@ export class HttpService extends HttpClient {
 
     if (!this.interceptors) {
       // Configure default interceptors that can be disabled here
-      this.interceptors = [
-        this.injector.get(ApiPrefixInterceptor),
-        this.injector.get(ErrorHandlerInterceptor)
-      ];
+      this.interceptors = [this.injector.get(ApiPrefixInterceptor), this.injector.get(ErrorHandlerInterceptor)];
     }
   }
 
   cache(forceUpdate?: boolean): HttpClient {
-    const cacheInterceptor = this.injector
-      .get(CacheInterceptor)
-      .configure({ update: forceUpdate });
+    const cacheInterceptor = this.injector.get(CacheInterceptor).configure({ update: forceUpdate });
     return this.addInterceptor(cacheInterceptor);
   }
 
@@ -125,10 +103,6 @@ export class HttpService extends HttpClient {
   }
 
   private addInterceptor(interceptor: HttpInterceptor): HttpService {
-    return new HttpService(
-      this.httpHandler,
-      this.injector,
-      this.interceptors.concat([interceptor])
-    );
+    return new HttpService(this.httpHandler, this.injector, this.interceptors.concat([interceptor]));
   }
 }

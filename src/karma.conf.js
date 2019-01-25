@@ -4,7 +4,7 @@
 const process = require('process');
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -29,8 +29,8 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: false,
     browsers: ['HeadlessChrome'],
-    customLaunchers:{
-      HeadlessChrome:{
+    customLaunchers: {
+      HeadlessChrome: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }

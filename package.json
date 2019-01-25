@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run env -s && ng build --prod",
-    "start": "ng serve --host 10.27.244.246 --port 8080",
+    "start": "ng serve --host 0.0.0.0 --port 8080",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 8080",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "test": "npm run env -s && ng test",
@@ -21,6 +21,8 @@
     "generate": "ng generate"
   },
   "dependencies": {
+    "@angular-devkit/core": "0.0.23",
+    "@angular-devkit/schematics": "0.0.42",
     "@angular/animations": "^7.0.0",
     "@angular/cdk": "^7.0.1",
     "@angular/common": "^7.0.0",

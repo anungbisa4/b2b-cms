@@ -13,12 +13,9 @@ describe('AuthenticationService', () => {
     });
   });
 
-  beforeEach(inject(
-    [AuthenticationService],
-    (_authenticationService: AuthenticationService) => {
-      authenticationService = _authenticationService;
-    }
-  ));
+  beforeEach(inject([AuthenticationService], (_authenticationService: AuthenticationService) => {
+    authenticationService = _authenticationService;
+  }));
 
   afterEach(() => {
     // Cleanup
@@ -57,12 +54,8 @@ describe('AuthenticationService', () => {
         expect(authenticationService.isAuthenticated()).toBe(true);
         expect(authenticationService.credentials).toBeDefined();
         expect(authenticationService.credentials).not.toBeNull();
-        expect(
-          (<Credentials>authenticationService.credentials).token
-        ).toBeDefined();
-        expect(
-          (<Credentials>authenticationService.credentials).token
-        ).not.toBeNull();
+        expect((<Credentials>authenticationService.credentials).token).toBeDefined();
+        expect((<Credentials>authenticationService.credentials).token).not.toBeNull();
       });
     }));
 

@@ -1,8 +1,5 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CoreModule, HttpCacheService } from '@app/core';
 import { QuoteService } from './quote.service';
@@ -20,11 +17,7 @@ describe('QuoteService', () => {
 
   beforeEach(inject(
     [HttpCacheService, QuoteService, HttpTestingController],
-    (
-      htttpCacheService: HttpCacheService,
-      _quoteService: QuoteService,
-      _httpMock: HttpTestingController
-    ) => {
+    (htttpCacheService: HttpCacheService, _quoteService: QuoteService, _httpMock: HttpTestingController) => {
       quoteService = _quoteService;
       httpMock = _httpMock;
 
